@@ -1,0 +1,42 @@
+.rank-wrapper {
+  margin-top: 60px;
+}
+
+.rank-table {
+
+  .name-col {
+    > span {
+      margin-left: 13px;
+    }
+  }
+
+  td {
+    > span {
+      vertical-align: middle;
+      line-height: 30px;
+    }
+  }
+
+  .u-row {
+    background-color: transparentize($brand-info, .9);
+  }
+}
+
+.axis {
+  path,
+  line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}

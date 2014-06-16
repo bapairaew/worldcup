@@ -1,0 +1,49 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container wrapper">
+  <div class="col-xs-12 text-center">
+    <div class="btn-group">
+      <label class="btn btn-default" ng-model="mode" btn-radio="'Table'">Table</label>
+      <label class="btn btn-default" ng-model="mode" btn-radio="'Points Chart'">Chart</label>
+      <!-- <label class="btn btn-default" ng-model="mode" btn-radio="'Rank Chart'">Rank Chart</label> -->
+    </div>
+  </div>
+  <div class="rank-wrapper">
+    <nvd3-line-chart
+      ng-if="mode == 'Points Chart' || mode == 'Rank Chart'"
+      data="mode == 'Points Chart' ? chartPoints : chartRank"
+      height="600"
+      showXAxis="true"
+      showYAxis="true"
+      tooltips="true"
+      interactive="true"
+      showLegend="true"
+      margin="{left:50,top:50,bottom:50,right:50}">
+      <svg></svg>
+    </nvd3-line-chart>
+    <table ng-if="mode == 'Table'" class="table table-bordered rank-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="text-center" style="width: 50px;">Points</th>
+          <th class="text-center" style="width: 50px;">Rank</th>
+          <th style="width: 50px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in table | orderBy:'points':true" ng-init="pos = user.historyRank[user.historyRank.length - 1] == user.historyRank[user.historyRank.length - 2] ? 'std' : user.historyRank[user.historyRank.length - 1] > user.historyRank[user.historyRank.length - 2] ? 'inc' : 'dec'" ng-class="{'u-row': $parent.currentUser.name == user.name}">
+          <td class="name-col">
+            <span ng-bind="user.name"></span>
+          </td>
+          <td class="text-center"><span ng-bind="user.points"></span></td>
+          <td class="text-center"><span ng-bind="user.historyRank[user.historyRank.length - 1]"></span></td>
+          <td class="text-center">
+            <span>
+              <i class="glyphicon" ng-class="{ 'glyphicon-chevron-up text-success': pos == 'inc', 'glyphicon-chevron-down text-danger': pos == 'dec', 'glyphicon-minus': pos == 'std' }"></i>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

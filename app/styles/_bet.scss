@@ -1,0 +1,95 @@
+.bet-card {
+
+  .match-header {
+    padding: 5px 10px;
+  }
+
+  .match {
+    padding: 15px 15px 15px 15px;
+    margin: 10px 5px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 1px 0 lighten(#dcdcdc, 3%);
+    border-radius: $border-radius-base;
+
+    .home,
+    .away {
+      text-decoration: none;
+      color: #474747;
+      > input {
+        vertical-align: top;
+      }
+    }
+
+    .home {
+      .title {
+        margin-left: 10px;
+      }
+    }
+
+    .away {
+      text-align: right;
+      .title {
+        margin-right: 10px;
+      }
+      > input {
+        text-align: right;
+      }
+    }
+
+    .detail {
+      > a {
+        display: block;
+      }
+    }
+
+    .date {
+      text-align: center;
+      padding-bottom: 10px;
+    }
+
+    .title,
+    .flag {
+      display: inline-block;
+      height: 48px;
+    }
+
+    .title {
+      font-size: 1.6em;
+      text-transform: uppercase;
+      line-height: 48px;
+      max-width: 250px;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .flag {
+      border: 1px solid #dcdcdc;
+      width: 70px;
+    }
+
+    .win {
+      font-weight: 700;
+    }
+
+    .lose {
+      font-weight: 300;
+      img {
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(100%);
+        opacity: .7;
+      }
+    }
+
+    .result {
+      text-align: center;
+
+      input {
+        display: inline;
+        width: 50px;
+        text-align: right;
+      }
+    }
+  }
+}

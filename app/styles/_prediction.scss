@@ -1,0 +1,58 @@
+.prediction-table {
+  height: 100%;
+  width: 100%;
+
+  .ngTopPanel {
+    background-color: #fff;
+    border-top: 1px solid #d4d4d4;
+  }
+
+  .col0 {
+    .ngHeaderText,
+    .ngCellText {
+      text-align: left;
+    }
+  }
+
+  .p-0 {
+    background-color: lighten($brand-danger, 35%);
+  }
+
+  .p-1,
+  .p-2 {
+    background-color: lighten($brand-warning, 30%);
+  }
+
+  .p-3 {
+    background-color: lighten($brand-success, 40%);
+  }
+
+  .p-4 {
+    background-color: lighten($brand-success, 38%);
+  }
+
+  .p-5 {
+    background-color: lighten($brand-success, 35%);
+  }
+
+  .u-col {
+    box-shadow: 0 0 0 1px transparentize($brand-info, .7) inset;
+  }
+
+  .ngHeaderText,
+  .ngCellText {
+    text-align: center;
+  }
+
+  .ngHeaderText {
+    padding: 10px;
+  }
+
+  .ngCellText {
+    padding: 8px;
+  }
+
+  .ngRow.even {
+    background-color: #f7f7f7;
+  }
+}
