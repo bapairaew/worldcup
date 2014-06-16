@@ -31,7 +31,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="user in table | orderBy:'points':true" ng-init="pos = user.historyRank[user.historyRank.length - 1] == user.historyRank[user.historyRank.length - 2] ? 'std' : user.historyRank[user.historyRank.length - 1] > user.historyRank[user.historyRank.length - 2] ? 'inc' : 'dec'" ng-class="{'u-row': $parent.currentUser.name == user.name}">
+        <tr ng-repeat="user in table | orderBy:'points':true" ng-init="pos = user.historyRank[user.historyRank.length - 1] == user.historyRank[user.historyRank.length - 2] ? 'std' : user.historyRank[user.historyRank.length - 1] < user.historyRank[user.historyRank.length - 2] ? 'inc' : 'dec'" ng-class="{'u-row': $parent.currentUser.name == user.name}">
           <td class="name-col">
             <span ng-bind="user.name"></span>
           </td>
