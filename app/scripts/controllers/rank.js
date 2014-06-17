@@ -42,22 +42,54 @@ angular.module('worldcupApp')
             }
           });
         $scope.table = table;
-        $scope.chartPoints = table.map(function (r) {
-          return {
-            key: r.name,
-            values: r.historyPoints.map(function (r, idx) {
-              return [idx, r];
-            })
-          };
-        });
-        $scope.chartRank = table.map(function (r) {
-          return {
-            key: r.name,
-            values: r.historyRank.map(function (r, idx) {
-              return [idx, r];
-            })
-          };
-        });
+        $scope.chartPoints = {
+          options: {
+            chart: {
+              type: 'line'
+            },
+            tooltip: {
+              style: {
+                padding: 10
+              }
+            },
+          },
+          title: {
+            text: 'Historical Points'
+          },
+          series: table.map(function (r, idx) {
+            return {
+              name: r.name,
+              data: r.historyPoints,
+              visible: idx < 5
+            };
+          })
+        };
+
+        $scope.chartRank = {
+          options: {
+            chart: {
+              type: 'line'
+            },
+            tooltip: {
+              style: {
+                padding: 10
+              }
+            },
+          },
+          title: {
+            text: 'Historical Rank'
+          },
+          yAxis: {
+            reversed: true,
+          },
+          series: table.map(function (r, idx) {
+            return {
+              name: r.name,
+              data: r.historyRank,
+              visible: idx < 5
+            };
+          })
+        };
       });
     });
     $scope.currentUser = $rootScope.currentUser;

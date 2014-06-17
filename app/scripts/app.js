@@ -7,7 +7,7 @@ angular.module('worldcupApp', [
   'ngRoute',
   'ui.bootstrap',
   'ngGrid',
-  'nvd3ChartDirectives'
+  'highcharts-ng'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
