@@ -30,7 +30,7 @@
         </div>
         <div class="away col-md-5" ng-class="{ win: winner == 'away', lose: winner == 'home' }">
           <div class="title" ng-bind="match.away.title"></div>
-          <a class="flag" href="http://en.wikipedia.org/wiki/{{match.home.title}}_national_football_team">
+          <a class="flag" href="http://en.wikipedia.org/wiki/{{match.away.title}}_national_football_team">
             <img ng-src="http://img.fifa.com/images/flags/4/{{match.away.key}}.png" alt="{{match.away.code}}">
           </a>
         </div>
