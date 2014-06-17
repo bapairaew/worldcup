@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('RankCtrl', function ($scope, $rootScope, $http) {
-    $http.get('/api/users').success(function (users) {
+  .controller('RankCtrl', function ($scope, $rootScope, $http, $window) {
+    $http.get('/api/users' + '?' + $window.Math.random()).success(function (users) {
       var table = users;
       table.forEach(function (u) { u.points = 0; u.historyPoints = []; u.historyRank = []; });
-      $http.get('/api/predictions').success(function (matches) {
+      $http.get('/api/predictions' + '?' + $window.Math.random()).success(function (matches) {
         matches.sort(function (a, b) { return a.matchnum - b.matchnum; })
           .filter(function (m) { return m.homeScore !== null; })
           .forEach(function (m) {

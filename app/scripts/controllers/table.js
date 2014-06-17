@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('TableCtrl', function ($scope, $rootScope, $http) {
+  .controller('TableCtrl', function ($scope, $rootScope, $http, $window) {
     var godName = 'James Smith';
 
-    $http.get('/api/users').success(function (users) {
+    $http.get('/api/users' + '?' + $window.Math.random()).success(function (users) {
       var table = users;
       table.push({ name: godName });
       table.forEach(function (u) { u.points = 0; });
-      $http.get('/api/predictions').success(function (matches) {
+      $http.get('/api/predictions' + '?' + $window.Math.random()).success(function (matches) {
         matches.sort(function (a, b) { return a.matchnum - b.matchnum; })
           .forEach(function (m) {
             if (m.home !== null) {

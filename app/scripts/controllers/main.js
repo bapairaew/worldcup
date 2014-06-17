@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $http) {
-    $http.get('/api/predictions/' + $rootScope.currentUser.name).success(function (matches) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, $window) {
+    $http.get('/api/predictions/' + $rootScope.currentUser.name + '?' + $window.Math.random()).success(function (matches) {
       $scope.matches = matches;
     });
     var now = new Date().toJSON();

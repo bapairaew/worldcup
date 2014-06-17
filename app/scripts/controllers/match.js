@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('MatchCtrl', function ($scope, $rootScope, $http) {
-    $http.get('/api/matches').success(function (matches) {
+  .controller('MatchCtrl', function ($scope, $rootScope, $http, $window) {
+    $http.get('/api/matches' + '?' + $window.Math.random()).success(function (matches) {
       $scope.matches = matches;
     });
 
