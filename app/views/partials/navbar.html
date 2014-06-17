@@ -17,7 +17,8 @@
         <li ng-class="{active: isActive('/match')}"><a href="/match">Match</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li ng-class="{active: isActive('/login')}" ng-if="!currentUser"><a href="/login" ng-click="isCollapsed = !isCollapsed;">Login</a></li>
+        <li class="dropdown" ng-if="currentUser">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 9px 16px;">
             <span ng-bind="currentUser.name"></span>
             <img class="img-circle" alt="{{currentUser.name}}" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcwIiB5PSI3MCIgc3R5bGU9ImZpbGw6I2FhYTtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtZmFtaWx5OkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjE0MHgxNDA8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px; visibility: hidden;">
@@ -29,12 +30,15 @@
         </li>
       </ul>
     </div>
-    <nav collapse="!isCollapsed">
+    <nav class="hidden-md hidden-sm hidden-lg" collapse="!isCollapsed">
       <ul class="nav navbar-nav">
         <li><a href="/" ng-click="isCollapsed = !isCollapsed">Bet</a></li>
         <li><a href="/table" ng-click="isCollapsed = !isCollapsed">Table</a></li>
         <li><a href="/rank" ng-click="isCollapsed = !isCollapsed">Rank</a></li>
         <li><a href="/match" ng-click="isCollapsed = !isCollapsed">Match</a></li>
+        <li ng-if="!currentUser"><a href="/login" ng-click="isCollapsed = !isCollapsed;">Login</a></li>
+        <li ng-if="currentUser"><a href="/settings" ng-click="isCollapsed = !isCollapsed">Settings</a></li>
+        <li ng-if="currentUser"><a href="" ng-click="logout(); isCollapsed = !isCollapsed;">Logout</a></li>
       </ul>
     </nav>
   </div>

@@ -10,12 +10,12 @@
         <span ng-bind="match.date | momentFormat:'HH:mm - dddd MMMM D YYYY'"></span>
       </div>
       <div class="row detail">
-        <a ng-if="match.matchnum <= 48" href="http://en.wikipedia.org/wiki/{{match.home.title}}_national_football_team" target="_blank" class="home col-md-5">
+        <div ng-if="match.matchnum <= 48" class="home col-md-5">
           <div class="flag">
             <img ng-src="http://img.fifa.com/images/flags/4/{{match.home.key}}.png" alt="{{match.home.code}}">
           </div>
           <div class="title" ng-bind="match.home.title"></div>
-        </a>
+        </div>
         <span ng-if="match.matchnum > 48" class="home col-md-5">
           <div class="flag">
             <img ng-src="http://img.fifa.com/images/flags/4/{{match.home.key}}.png" alt="{{match.home.code}}">
@@ -29,12 +29,12 @@
             <input type="number" min="0" class="form-control" ng-disabled="$parent.isStarted(match.date)" ng-model="awayScore" ng-enter="$parent.update(match.matchnum, homeScore, awayScore)">
           </form>
         </div>
-        <a ng-if="match.matchnum <= 48" href="http://en.wikipedia.org/wiki/{{match.away.title}}_national_football_team" target="_blank" class="away col-md-5">
+        <div ng-if="match.matchnum <= 48" class="away col-md-5">
           <div class="title" ng-bind="match.away.title"></div>
           <div class="flag">
             <img ng-src="http://img.fifa.com/images/flags/4/{{match.away.key}}.png" alt="{{match.away.code}}">
           </div>
-        </a>
+        </div>
         <span ng-if="match.matchnum > 48" class="away col-md-5">
           <input type="text" class="title" ng-model="match.away.title" ng-enter="$parent.game(match.matchnum, match.home.title, match.away.title)">
           <div class="flag">
