@@ -30,7 +30,8 @@ angular.module('worldcupApp', [
       })
       .when('/match', {
         templateUrl: 'partials/match',
-        controller: 'MatchCtrl'
+        controller: 'MatchCtrl',
+        authenticate: true
       })
       // .when('/signup', {
       //   templateUrl: 'partials/signup',
