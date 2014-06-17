@@ -93,5 +93,5 @@ angular.module('worldcupApp')
       });
     });
     $scope.currentUser = $rootScope.currentUser;
-    $scope.mode = 'Table';
+    $scope.mode = 'table';
   });

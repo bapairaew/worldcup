@@ -3,15 +3,15 @@
 <div class="container wrapper">
   <div class="col-xs-12 text-center">
     <div class="btn-group">
-      <label class="btn btn-default" ng-model="mode" btn-radio="'Table'">Table</label>
-      <label class="btn btn-default" ng-model="mode" btn-radio="'Points Chart'">Points Chart</label>
-      <label class="btn btn-default" ng-model="mode" btn-radio="'Rank Chart'">Rank Chart</label>
+      <label class="btn btn-default" ng-model="mode" btn-radio="'table'">Table</label>
+      <label class="btn btn-default" ng-model="mode" btn-radio="'points'">Historical Points</label>
+      <label class="btn btn-default" ng-model="mode" btn-radio="'ranking'">Historical Ranking</label>
     </div>
   </div>
   <div class="rank-wrapper">
-    <highchart ng-if="mode == 'Points Chart'" config="chartPoints"></highchart>
-    <highchart ng-if="mode == 'Rank Chart'" config="chartRank"></highchart>
-    <table ng-if="mode == 'Table'" class="table table-bordered rank-table">
+    <highchart ng-if="mode == 'points'" config="chartPoints"></highchart>
+    <highchart ng-if="mode == 'ranking'" config="chartRank"></highchart>
+    <table ng-if="mode == 'table'" class="table table-bordered rank-table">
       <thead>
         <tr>
           <th>Name</th>

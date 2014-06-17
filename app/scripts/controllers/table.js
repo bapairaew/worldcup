@@ -2,7 +2,7 @@
 
 angular.module('worldcupApp')
   .controller('TableCtrl', function ($scope, $rootScope, $http, $window) {
-    var godName = 'James Smith';
+    var godName = 'Pelé';
 
     $http.get('/api/users' + '?' + $window.Math.random()).success(function (users) {
       var table = users;
