@@ -77,7 +77,7 @@ angular.module('worldcupApp')
             },
           },
           title: {
-            text: 'Historical Rank'
+            text: 'Historical Ranking'
           },
           yAxis: {
             reversed: true,
