@@ -32,13 +32,16 @@ angular.module('worldcupApp')
                 r.historyPoints.push(r.points);
                 r.weekPoints.push(p);
               });
-              var sum = table.map(function (a) { return a.weekPoints[a.weekPoints.length - 1]; })
+              var weekSum = table.map(function (a) { return a.weekPoints[a.weekPoints.length - 1]; })
+                .reduce(function (a, b) { return a + b ; });
+              var weekAvg = weekSum / table.length;
+              table.forEach(function (u) {
+                u.historyAvgPoints.push(u.weekPoints[u.weekPoints.length - 1] - weekAvg);
+              });
+              var sum = table.map(function (a) { return a.historyPoints[a.historyPoints.length - 1]; })
                 .reduce(function (a, b) { return a + b ; });
               var avg = sum / table.length;
               avgs.push(avg);
-              table.forEach(function (u) {
-                u.historyAvgPoints.push(u.weekPoints[u.weekPoints.length - 1] - avg);
-              });
               var historyTable = table.sort(function (a, b) { return b.historyPoints[b.historyPoints.length - 1] - a.historyPoints[a.historyPoints.length - 1]; });
               for (var i = 0; i < historyTable.length; i++) {
                 var rank = i + 1;
