@@ -4,11 +4,13 @@
   <div class="col-xs-12 text-center">
     <div class="btn-group">
       <label class="btn btn-default" ng-model="mode" btn-radio="'table'">Table</label>
+      <label class="btn btn-default" ng-model="mode" btn-radio="'avg'">Avg.</label>
       <label class="btn btn-default" ng-model="mode" btn-radio="'points'">Points</label>
       <label class="btn btn-default" ng-model="mode" btn-radio="'ranking'">Ranking</label>
     </div>
   </div>
   <div class="rank-wrapper">
+    <highchart ng-if="mode == 'avg'" config="chartAvg"></highchart>
     <highchart ng-if="mode == 'points'" config="chartPoints"></highchart>
     <highchart ng-if="mode == 'ranking'" config="chartRank"></highchart>
     <table ng-if="mode == 'table'" class="table table-bordered rank-table">
