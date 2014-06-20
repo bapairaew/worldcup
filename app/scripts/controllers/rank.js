@@ -5,13 +5,15 @@ angular.module('worldcupApp')
     $http.get('/api/users' + '?' + $window.Math.random()).success(function (users) {
       var table = users;
       var avgs = [];
-      table.forEach(function (u) { u.points = 0; u.historyPoints = []; u.historyRank = []; u.historyAvgPoints = []; });
+      var exclude = ['P\'Nut', 'Boy', 'Mine', 'Te'];
+      table.forEach(function (u) { u.points = 0; u.historyPoints = []; u.historyRank = []; u.weekPoints = []; u.historyAvgPoints = []; });
       $http.get('/api/predictions' + '?' + $window.Math.random()).success(function (matches) {
         matches.sort(function (a, b) { return a.matchnum - b.matchnum; })
           .filter(function (m) { return m.homeScore !== null; })
           .forEach(function (m) {
             if (m.home !== null && angular.isDefined(m.homeScore)) {
               table.forEach(function (r) {
+                var p = 0;
                 for (var i = 0; i < m.bets.length; i++) {
                   var b = m.bets[i];
                   if (b.user === r.name) {
@@ -19,7 +21,6 @@ angular.module('worldcupApp')
                       (m.homeScore < m.awayScore && b.homeScore < b.awayScore) ||
                       (m.homeScore === m.awayScore && b.homeScore === b.awayScore);
 
-                    var p = 0;
                     p += m.homeScore === b.homeScore ? 1 : 0;
                     p += m.awayScore === b.awayScore ? 1 : 0;
                     p += correct ? 3 : 0;
@@ -29,13 +30,14 @@ angular.module('worldcupApp')
                   }
                 }
                 r.historyPoints.push(r.points);
+                r.weekPoints.push(p);
               });
-              var sum = table.map(function (a) { return a.historyPoints[a.historyPoints.length - 1]; })
+              var sum = table.map(function (a) { return a.weekPoints[a.weekPoints.length - 1]; })
                 .reduce(function (a, b) { return a + b ; });
               var avg = sum / table.length;
               avgs.push(avg);
               table.forEach(function (u) {
-                u.historyAvgPoints.push(u.historyPoints[u.historyPoints.length - 1] - avg);
+                u.historyAvgPoints.push(u.weekPoints[u.weekPoints.length - 1] - avg);
               });
               var historyTable = table.sort(function (a, b) { return b.historyPoints[b.historyPoints.length - 1] - a.historyPoints[a.historyPoints.length - 1]; });
               for (var i = 0; i < historyTable.length; i++) {
@@ -78,7 +80,7 @@ angular.module('worldcupApp')
               }
               return ret;
             })(table[0].historyAvgPoints.length)
-          }].concat(table.map(function (r, idx) {
+          }].concat(table.filter(function (r) { return exclude.indexOf(r.name) < 0; }).map(function (r, idx) {
             return {
               name: r.name,
               data: r.historyAvgPoints,
@@ -109,7 +111,7 @@ angular.module('worldcupApp')
             data: avgs,
             color: '#f00',
             lineWidth: 5
-          }].concat(table.map(function (r, idx) {
+          }].concat(table.filter(function (r) { return exclude.indexOf(r.name) < 0; }).map(function (r, idx) {
             return {
               name: r.name,
               data: r.historyPoints,
@@ -138,7 +140,7 @@ angular.module('worldcupApp')
           yAxis: {
             reversed: true,
           },
-          series: table.map(function (r, idx) {
+          series: table.filter(function (r) { return exclude.indexOf(r.name) < 0; }).map(function (r, idx) {
             return {
               name: r.name,
               data: r.historyRank,
