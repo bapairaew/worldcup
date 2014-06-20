@@ -57,7 +57,7 @@ angular.module('worldcupApp')
             },
             tooltip: {
               formatter: function() {
-                return '<b>Matchday: </b>' + (this.x + 1) + '<br><b>' + this.series.name + ': </b>' + this.y.toFixed(3);
+                return '<b>Match: </b>' + (this.x + 1) + '<br><b>' + this.series.name + ': </b>' + this.y.toFixed(3);
               },
               style: {
                 padding: 10
@@ -94,7 +94,7 @@ angular.module('worldcupApp')
             },
             tooltip: {
               formatter: function() {
-                return '<b>Matchday: </b>' + (this.x + 1) + '<br><b>' + this.series.name + ': </b>' + this.y;
+                return '<b>Match: </b>' + (this.x + 1) + '<br><b>' + this.series.name + ': </b>' + this.y;
               },
               style: {
                 padding: 10
@@ -125,7 +125,7 @@ angular.module('worldcupApp')
             },
             tooltip: {
               formatter: function() {
-                return '<b>Matchday: </b>' + (this.x + 1) + '<br><b>' + this.series.name + ': </b>' + this.y;
+                return '<b>Match: </b>' + (this.x + 1) + '<br><b>' + this.series.name + ': </b>' + this.y;
               },
               style: {
                 padding: 10
