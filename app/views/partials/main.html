@@ -3,7 +3,7 @@
 <div class="container wrapper">
   <ul class="list-unstyled bet-card">
     <li class="match-header" ng-repeat-start="match in matches | orderBy:'date'" ng-if="match.home != null && showHeader(match.date, $last)">
-      <h4 ng-init="day = $parent.getMatchDay(currentGroup);" ng-bind="'Day ' + day" id="'day' + day"></h4>
+      <h4 ng-init="day = $parent.getMatchDay(currentGroup);" ng-bind="'Day ' + day" id="{{$parent.isToday(match.date, day) ? 'today' : ''}}"></h4>
     </li>
     <li class="match" ng-repeat-end ng-if="match.home != null && !showHeader(match.date, $last)">
       <div class="row date">
@@ -11,8 +11,7 @@
       </div>
       <div class="row detail" ng-init="winner = match.homeScore == match.awayScore ? 'draw' : match.homeScore > match.awayScore ? 'home' : 'away'">
         <div class="home col-md-5" ng-class="{ win: winner == 'home', lose: winner == 'away' }">
-          <a class="flag" href="http://en.wikipedia.org/wiki/{{match.home.title}}_national_football_team">
-            <img ng-src="http://img.fifa.com/images/flags/4/{{match.home.key}}.png" alt="{{match.home.code}}">
+          <a class="flag" href="http://en.wikipedia.org/wiki/{{match.home.title}}_national_football_team" style="background-image: url(http://img.fifa.com/images/flags/4/{{match.home.key}}.png)">
           </a>
           <div class="title" ng-bind="match.home.title"></div>
         </div>
@@ -30,8 +29,7 @@
         </div>
         <div class="away col-md-5" ng-class="{ win: winner == 'away', lose: winner == 'home' }">
           <div class="title" ng-bind="match.away.title"></div>
-          <a class="flag" href="http://en.wikipedia.org/wiki/{{match.away.title}}_national_football_team">
-            <img ng-src="http://img.fifa.com/images/flags/4/{{match.away.key}}.png" alt="{{match.away.code}}">
+          <a class="flag" href="http://en.wikipedia.org/wiki/{{match.away.title}}_national_football_team" style="background-image: url(http://img.fifa.com/images/flags/4/{{match.away.key}}.png)">
           </a>
         </div>
       </div>

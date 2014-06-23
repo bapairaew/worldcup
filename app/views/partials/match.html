@@ -11,14 +11,12 @@
       </div>
       <div class="row detail">
         <div ng-if="match.matchnum <= 48" class="home col-md-5">
-          <div class="flag">
-            <img ng-src="http://img.fifa.com/images/flags/4/{{match.home.key}}.png" alt="{{match.home.code}}">
+          <div class="flag" style="background-image: url(http://img.fifa.com/images/flags/4/{{match.home.key}}.png)">
           </div>
           <div class="title" ng-bind="match.home.title"></div>
         </div>
         <span ng-if="match.matchnum > 48" class="home col-md-5">
-          <div class="flag">
-            <img ng-src="http://img.fifa.com/images/flags/4/{{match.home.key}}.png" alt="{{match.home.code}}">
+          <div class="flag" style="background-image: url(http://img.fifa.com/images/flags/4/{{match.home.key}}.png)">
           </div>
           <input type="text" class="title" ng-model="match.home.title" ng-enter="$parent.game(match.matchnum, match.home.title, match.away.title)">
         </span>
@@ -31,14 +29,12 @@
         </div>
         <div ng-if="match.matchnum <= 48" class="away col-md-5">
           <div class="title" ng-bind="match.away.title"></div>
-          <div class="flag">
-            <img ng-src="http://img.fifa.com/images/flags/4/{{match.away.key}}.png" alt="{{match.away.code}}">
+          <div class="flag" style="background-image: url(http://img.fifa.com/images/flags/4/{{match.away.key}}.png)">
           </div>
         </div>
         <span ng-if="match.matchnum > 48" class="away col-md-5">
           <input type="text" class="title" ng-model="match.away.title" ng-enter="$parent.game(match.matchnum, match.home.title, match.away.title)">
-          <div class="flag">
-            <img ng-src="http://img.fifa.com/images/flags/4/{{match.away.key}}.png" alt="{{match.away.code}}">
+          <div class="flag" style="background-image: url(http://img.fifa.com/images/flags/4/{{match.away.key}}.png)">
           </div>
         </span>
       </div>

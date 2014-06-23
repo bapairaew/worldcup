@@ -1,11 +1,15 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $http, $window) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, $window, $timeout) {
     $http.get('/api/predictions/' + $rootScope.currentUser.name + '?' + $window.Math.random()).success(function (matches) {
       $scope.matches = matches;
+      $timeout(function () {
+        $window.smoothScroll($window.document.getElementById('today'), 500);
+      }, 1);
     });
     var now = new Date().toJSON();
+    var today = null;
 
     var matchDayCount = 0;
     $scope.matchDay = {};
@@ -27,6 +31,14 @@ angular.module('worldcupApp')
     };
     $scope.isStarted = function (date) {
       return date < now;
+    };
+    $scope.isToday = function (date, day) {
+      if ((date > now) && (today === null || today === day)) {
+        today = day;
+        return true;
+      } else {
+        return false;
+      }
     };
     $scope.bet = function (match, home, away) {
       if (angular.isNumber(home) && angular.isNumber(away)) {
