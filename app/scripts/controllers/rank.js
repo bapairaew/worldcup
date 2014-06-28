@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('RankCtrl', function ($scope, $rootScope, $http, $window) {
+  .controller('RankCtrl', function ($scope, $rootScope, $http, $window, $location) {
     $http.get('/api/users' + '?' + $window.Math.random()).success(function (users) {
       var table = users;
       var avgs = [];
       var exclude = ['P\'Nut', 'Boy', 'Mine', 'Te'];
+      $scope.endOfTrial = $location.search().trial ? 0 : 49;
+
       table.forEach(function (u) { u.points = 0; u.historyPoints = []; u.historyRank = []; u.weekPoints = []; u.historyAvgPoints = []; });
       $http.get('/api/predictions' + '?' + $window.Math.random()).success(function (matches) {
         matches.sort(function (a, b) { return a.matchnum - b.matchnum; })
-          .filter(function (m) { return m.homeScore !== null; })
+          .filter(function (m) { return m.homeScore !== null && m.matchnum >= $scope.endOfTrial; })
           .forEach(function (m) {
             if (m.home !== null && angular.isDefined(m.homeScore)) {
               table.forEach(function (r) {

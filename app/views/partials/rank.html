@@ -1,6 +1,10 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="container wrapper">
+  <alert class="notification" type="info" ng-init="showAlert = true" ng-show="showAlert" close="showAlert = false">
+    <h4>Thank you for participating TRIAL version of Analytics World Cup!</h4>
+    <p>The real show starts here!</p>
+  </alert>
   <div class="col-xs-12 text-center">
     <div class="btn-group">
       <label class="btn btn-default" ng-model="mode" btn-radio="'table'">Table</label>

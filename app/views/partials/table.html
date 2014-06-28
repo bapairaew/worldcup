@@ -1,5 +1,9 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="wrapper full-container">
-  <div class="prediction-table" ng-grid="gridOptions"></div>
+  <alert class="notification" type="info" ng-init="showAlert = true" ng-show="showAlert" close="showAlert = false">
+    <h4>Thank you for participating TRIAL version of Analytics World Cup!</h4>
+    <p>The real show starts here!</p>
+  </alert>
+  <div class="prediction-table" ng-if="loaded" ng-grid="gridOptions"></div>
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $http, $window, $timeout) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, $window, $timeout, $location) {
     $http.get('/api/predictions/' + $rootScope.currentUser.name + '?' + $window.Math.random()).success(function (matches) {
       $scope.matches = matches;
       $timeout(function () {
@@ -14,6 +14,7 @@ angular.module('worldcupApp')
     var matchDayCount = 0;
     $scope.matchDay = {};
     $scope.currentGroup = 0;
+    $scope.endOfTrial = $location.search().trial ? 0 : 49;
     $scope.showHeader = function (date, $last) {
       var group = +(date.substring(0, 10).replace(/-/g, ''));
       if (+date.substring(11, 13) < 4) {

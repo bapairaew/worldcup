@@ -1,11 +1,15 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="container wrapper">
+  <alert class="notification" type="info" ng-init="showAlert = true" ng-show="showAlert" close="showAlert = false">
+    <h4>Thank you for participating TRIAL version of Analytics World Cup!</h4>
+    <p>The real show starts here!</p>
+  </alert>
   <ul class="list-unstyled bet-card">
-    <li class="match-header" ng-repeat-start="match in matches | orderBy:'date'" ng-if="match.home != null && showHeader(match.date, $last)">
+    <li class="match-header" ng-repeat-start="match in matches | orderBy:'date'" ng-if="match.home != null && showHeader(match.date, $last) && match.matchnum >= endOfTrial">
       <h4 ng-init="day = $parent.getMatchDay(currentGroup);" ng-bind="'Day ' + day" id="{{$parent.isToday(match.date, day) ? 'today' : ''}}"></h4>
     </li>
-    <li class="match" ng-repeat-end ng-if="match.home != null && !showHeader(match.date, $last)">
+    <li class="match" ng-repeat-end ng-if="match.home != null && !showHeader(match.date, $last) && match.matchnum >= endOfTrial">
       <div class="row date">
         <span ng-bind="match.date | momentFormat:'HH:mm - dddd MMMM D YYYY'"></span>
       </div>
