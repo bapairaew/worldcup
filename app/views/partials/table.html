@@ -1,7 +1,7 @@
 <div ng-include="'partials/navbar'"></div>
 
 <div class="wrapper full-container">
-  <alert class="notification" type="info" ng-init="showAlert = true" ng-show="showAlert" close="showAlert = false">
+  <alert class="notification" type="info" ng-show="Config.showAlert" close="Config.showAlert = false">
     <h4>TRIAL version is over!</h4>
     <p>The real show starts here!</p>
   </alert>

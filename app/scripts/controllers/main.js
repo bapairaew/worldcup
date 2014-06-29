@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $http, $window, $timeout, $location) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, $window, $timeout, $location, Config) {
     $http.get('/api/predictions/' + $rootScope.currentUser.name + '?' + $window.Math.random()).success(function (matches) {
       $scope.matches = matches;
       $timeout(function () {
@@ -10,6 +10,7 @@ angular.module('worldcupApp')
     });
     var now = new Date().toJSON();
     var today = null;
+    $scope.Config = Config;
 
     var matchDayCount = 0;
     $scope.matchDay = {};

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldcupApp')
-  .controller('TableCtrl', function ($scope, $rootScope, $http, $window, $location) {
+  .controller('TableCtrl', function ($scope, $rootScope, $http, $window, $location, Config) {
     var godName = 'Pelé';
     $scope.endOfTrial = $location.search().trial ? 0 : 49;
 
@@ -12,6 +12,7 @@ angular.module('worldcupApp')
 
     $scope.currentUser = $rootScope.currentUser;
     $scope.loaded = false;
+    $scope.Config = Config;
 
     $http.get('/api/users' + '?' + $window.Math.random()).success(function (users) {
       var table = users;
