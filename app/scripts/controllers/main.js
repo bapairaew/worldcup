@@ -16,13 +16,13 @@ angular.module('worldcupApp')
     $scope.matchDay = {};
     $scope.currentGroup = 0;
     $scope.endOfTrial = $location.search().trial ? 0 : 49;
-    $scope.showHeader = function (date, $last) {
+    $scope.showHeader = function (date) {
       var group = +(date.substring(0, 10).replace(/-/g, ''));
       if (+date.substring(11, 13) < 4) {
         group--;
       }
       var showHeader = (group !== $scope.currentGroup);
-      $scope.currentGroup = $last ? null : group;
+      $scope.currentGroup = group;
       return showHeader;
     };
     $scope.getMatchDay = function (date) {
